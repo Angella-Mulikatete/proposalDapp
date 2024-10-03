@@ -78,9 +78,9 @@ function App() {
                 proposalId: proposalId.toString(),
                 description,
                 recipient,
-                amount: amount,
-                votingDeadline: votingDeadline,
-                minVotesToPass: minVotesToPass,
+                amount: amount.toString(),
+                votingDeadline: votingDeadline.toString(),
+                minVotesToPass: minVotesToPass.toString(),
             });
         
             fetchProposals(); 
@@ -89,12 +89,12 @@ function App() {
 
         const handleVote = useCallback(
             async(proposalId) =>{
-                console.log("New Vote Recorded:", { proposalId: proposalId.toString() });
+                console.log("New Vote Recorded:", { proposalId: proposalId.toString()});
         
               setProposals((prevProposals) =>
                 prevProposals.map((proposal) =>
                     proposal.proposalId === proposalId.toString()
-                        ? { ...proposal, voteCount: (parseInt(proposal.voteCount) + 1).toString() }
+                        ? { ...proposal, voteCount: (parseInt(proposal.voteCount) + 1) }
                         : proposal
                 )
             );
@@ -126,7 +126,10 @@ function App() {
             <Box className="flex justify-end p-4">
                 <CreateProposalModal />
             </Box>
-            <Proposals proposals={proposals} handleVote={handleVote}/>
+            <Proposals 
+                proposals={proposals} 
+                handleVote={handleVote}
+            />
         </Layout>
     );
 }

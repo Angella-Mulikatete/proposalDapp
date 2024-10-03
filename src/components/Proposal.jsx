@@ -13,19 +13,17 @@ const Proposal = ({
     votecount,
     deadline,
     executed,
+    handleVote
    
 }) => {
     const[currentVoteCount, setCurrentVoteCount] = useState(Number(votecount));
 
-    // const onVote =() =>{
-    //     handleVote(proposalId);
-    //     setCurrentVoteCount((prevCount) => prevCount + 1);
-    // }
-    const handleVoting = useVote;
+    const handleVoting = useVote();
     const onVote = async () => {
         const success = await handleVoting(proposalId);
         if (success) {
-        setCurrentVoteCount((prevCount) => prevCount + 1);
+            await handleVote(proposalId);
+            setCurrentVoteCount((prevCount) => prevCount + 1);
         }
      };
 

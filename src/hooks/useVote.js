@@ -27,7 +27,9 @@ const useVote = () => {
 
             try {
                 const estimatedGas = await contract.vote.estimateGas(proposalId );
-                const tx = await contract.vote(proposalId, estimatedGas);
+                const tx = await contract.vote(proposalId,  {
+                        gasLimit: (estimatedGas * BigInt(120)) / BigInt(100),
+                    });
                 const reciept = await tx.wait();
 
                 if (reciept.status === 1) {
