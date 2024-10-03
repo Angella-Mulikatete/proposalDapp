@@ -1,7 +1,7 @@
 import { Flex, Text } from "@radix-ui/themes";
 import Proposal from "./Proposal";
 
-const Proposals = ({ proposals }) => {
+const Proposals = ({ proposals , handleVote}) => {
     return (
         <Flex className="w-full flex gap-4 flex-wrap">
             {proposals.length === 0 ? (
@@ -9,6 +9,7 @@ const Proposals = ({ proposals }) => {
             ) : (
                 proposals.map(
                     ({
+                        proposalId,
                         deadline,
                         minRequiredVote,
                         amount,
@@ -18,12 +19,14 @@ const Proposals = ({ proposals }) => {
                     }) => (
                         <Proposal
                             key={`${deadline}${minRequiredVote}`}
+                            proposalId={proposalId}
                             amount={amount}
                             deadline={deadline}
                             description={description}
                             executed={executed}
                             minRequiredVote={minRequiredVote}
                             votecount={votecount}
+                            handleVote={handleVote}
                         />
                     )
                 )

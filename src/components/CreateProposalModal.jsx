@@ -3,8 +3,10 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import useCreateProposal from "../hooks/useCreateProposal";
 
+
 const CreateProposalModal = () => {
     const handleCreateProposal = useCreateProposal();
+    
     const [state, setState] = useState({
         description: "",
         recipient: "",

@@ -10,6 +10,8 @@ const useCreateProposal = () => {
     const contract = useContract(true);
     const { address } = useAppKitAccount();
     const { chainId } = useAppKitNetwork();
+
+    
     return useCallback(
         async (description, recipient, amount, duration, minVote) => {
             if (
